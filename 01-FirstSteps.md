@@ -1,7 +1,7 @@
 # 01 Getting Started
 
 First we need to create the main files for starting a new project.
-We need to create a **main.tf** and a **vars.tf**. The naming is not required since terraform reads all .tf files in the folder but this is the reccomended naiming. Variables are not required, but unless you only control a few resources you will find that vars help to avoid having to repeat values repeatedly.
+We need to create a **main.tf** and a **vars.tf**. The naming is not required since terraform reads all .tf files in the folder but this is the reccomended naming. Variables are not required, but unless you only control a few resources you will find that vars help to avoid having to repeat values repeatedly.
 
 **vars.tf** Create the file and create string variables for **project_id**, **project_region** and **environment**. Terraform allows any most symbols in the names, but the reccomended naming uses lowercase naming and _ for separating words.
 This is how we define a variable in terraform, and we can multiple variable {} blocks
@@ -25,7 +25,7 @@ provider "google-beta" {
 }
 ```
 
-Now we are ready to create the google project. The billing account information can be found on the console page, in a more structured setup that would not be necessary since it would be introduces some other way to avoid all projects having to refer to the billing accounts.
+Now we are ready to create the google project. The billing account information can be found on the [console](https://console.cloud.google.com/billing) page, in a more structured setup that would not be necessary since it would be introduces some other way to avoid all projects having to refer to the billing accounts.
 ```
 # -----------------------------------------------------------------------------
 # Project
@@ -39,7 +39,7 @@ resource "google_project" "workshop_project" {
 
 The final step in our first steps is to create a storage bucket for where we want to store the terraform state after we have gotten this set up.
 Here you have to create a globally uniqe name for the bucket. It has to be globally unique since if you configure access rights for it you can refer to the files with an url where the bucketname is part of the url.
-I suggest naming it something like yourname-workshop-terraform-state-${var.environment}
+I suggest naming it something like yourname-workshop-terraform-state
 ```
 resource "google_storage_bucket" "workshop_state" {
   name          = ""
@@ -51,7 +51,7 @@ resource "google_storage_bucket" "workshop_state" {
 ```
 
 To be able to easily swap between different projects/environments we create a **dev.tfvars** file and provide the values for the variables
-The names on the left side must match your names from the **vars.tf** file. Also remember to rename the **yourname** pars of the project_id
+The names on the left side must match your names from the **vars.tf** file. Also remember to rename the **yourname** part of the project_id
 ```
 project_id = "yourname-terraform-workshop-dev"
 project_region = "europe-north1"
@@ -75,3 +75,4 @@ When we are happy with the plan we can apply it, this will create the resources 
 terraform apply dev.plan
 ```
 
+[next](https://github.com/rselbo/TerraformWorkshop/blob/main/02-PrepareBackend.md)

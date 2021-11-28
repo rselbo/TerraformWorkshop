@@ -20,3 +20,8 @@ terraform init
 ```
 
 Now anyone who has access to the project can run terraform init, plan and apply and change the infrastructure and as long as everybody has the same .tf files there will be no problems.
+
+[next](https://github.com/rselbo/TerraformWorkshop/blob/main/03-FirstInfrastructure.md)
+
+
+[previous](https://github.com/rselbo/TerraformWorkshop/blob/main/01-FirstSteps.md)
